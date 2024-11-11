@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.upper-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.image-title-container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.main-image {
+    max-width: 60%; /* Ajuste de tamaño */
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.main-title {
+    font-size: 48px;
+    color: #333333;
+    font-weight: normal;
+    margin: 20px 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.button-section {
+    background-color: #f5f5f5;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.button-link {
+    text-decoration: none;
+    flex: 1;
+    max-width: 280px;
+}
+
+.button-box {
+    background-color: #FFFFFF;
+    padding: 15px 30px;
+    text-align: center;
+    color: #333333;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E0E0E0;
+}
+
+.button-box span {
+    line-height: 1.2;
+}
+
+@media (max-width: 992px) {
+    .button-container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .button-link {
+        width: calc(50% - 10px);
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 36px;
+    }
+    .button-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .button-link {
+        width: 100%;
+    }
+    .button-box {
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 32px;
+    }
+    .upper-section {
+        padding: 20px;
+    }
+    .button-section {
+        padding: 20px 0;
+    }
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+    color: white;
+    text-align: center;
+}
+
+header nav a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+
+header nav a:hover {
+    background-color: #555;
+}
+
+/* Sección del catálogo */
+.catalogo {
+    padding: 2rem;
+    text-align: center;
+}
+
+.catalogo h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para los filtros */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.filtros label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.filtros select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Galería de productos en cuadrícula */
+.galeria-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+    padding: 1rem;
+}
+
+/* Tarjeta de producto */
+.producto-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagen del producto */
+.producto-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Título, precio y descripción del producto */
+.producto-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.producto-card .precio {
+    font-size: 1.1em;
+    color: #f39c12;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.producto-card .descripcion {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0.5rem 0 1rem 0;
+}
+
+/* Botón de agregar al carrito */
+.producto-card button {
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.producto-card button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo para la sección de paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Estilo para los botones de paginación */
+.paginacion button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.paginacion button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo para el número de página */
+.paginacion #pagina-actual {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
