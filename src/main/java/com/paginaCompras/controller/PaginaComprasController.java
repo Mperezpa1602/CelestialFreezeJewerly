@@ -17,6 +17,7 @@ public class PaginaComprasController {
     @Autowired
     private PaginaComprasService paginaComprasService;
 
+    //Devuelve la lista complete, la cual sera filtrada para descuentos.
     @GetMapping(value = "/paginaComprasDescuento")
     public String listado(Model model) {
         var lista = paginaComprasService.getComprases();
@@ -25,6 +26,7 @@ public class PaginaComprasController {
         return "/productos/paginaComprasDescuento";
     }
 
+    //Muestra solo productos en tendencia
     @GetMapping(value = "/paginaComprasTendencias")
     public String mostrarTendencias(Model model) {
         var lista = paginaComprasService.getComprases();
@@ -36,6 +38,15 @@ public class PaginaComprasController {
 
         model.addAttribute("productos", productosEnTendencia);
         return "/productos/paginaComprasTendencias";
+    }
+    
+    //Muestra el catalogo completo
+    @GetMapping(value = "/paginaComprasCatalogo")
+    public String mostrarCatalogo(Model model) {
+        var lista = paginaComprasService.getComprases();
+        model.addAttribute("productos", lista);
+        //model.addAttribute("totalProductos", lista.size());
+        return "/productos/paginaComprasCatalogo";
     }
 
 }
