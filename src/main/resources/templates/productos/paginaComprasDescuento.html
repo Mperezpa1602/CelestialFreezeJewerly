@@ -46,6 +46,20 @@
             <p class="lead">Nuestros descuentos actuales.</p>
         </div>
 
+        <!-- Búsqueda de descuentos -->
+        <div class="container mt-4">
+            <form method="GET" action="/productos/buscarDescuentos">
+                <div class="input-group">
+                    <!-- Se le pone el nombre buscarDescuento ya que así se le puso a la función -->  
+                    <input type="text" class="form-control" name="buscarDescuento" placeholder="Buscar productos en descuento" aria-label="Buscar descuentos" required />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
         <!-- Productos -->
         <div class="row">
             <!-- Solo obtiene los productos que tienen descuento -->

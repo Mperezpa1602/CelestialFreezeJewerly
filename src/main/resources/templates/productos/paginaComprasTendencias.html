@@ -12,6 +12,8 @@
     </head>
     <body>
 
+
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Celestial Freeze Jewerly</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +46,19 @@
         <div class="jumbotron text-center" style="background-color: #f8f9fa;">
             <h1 class="display-4">Celestial Freeze Jewerly</h1>
             <p class="lead">Los productos mas llamativos del momento.</p>
+        </div>
+
+        <!-- Bsuqueda de tendencias -->
+        <div class="container mt-4">
+            <form method="GET" action="/productos/buscarProductos">
+                <div class="input-group">
+                    <!-- Se le pone el nombre buscarTendencia ya que asi se le puso a la funcion -->	
+                    <input type="text" class="form-control" name="buscarTendencia" placeholder="Buscar productos en tendencia" aria-label="Buscar productos" required />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <!-- Productos -->

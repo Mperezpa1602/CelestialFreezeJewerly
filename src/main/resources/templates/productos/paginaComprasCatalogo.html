@@ -46,6 +46,20 @@
             <p class="lead">Explore nuestro catalogo completo.</p>
         </div>
 
+        <!-- Búsqueda en todo el catálogo -->
+        <div class="container mt-4">
+            <form method="GET" action="/productos/buscarCatalogo">
+                <div class="input-group">
+                    <!-- Se le pone el nombre buscarProducto ya que así se le puso a la función -->  
+                    <input type="text" class="form-control" name="buscarProducto" placeholder="Buscar productos en el catálogo" aria-label="Buscar catálogo" required />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
         <!-- Productos -->
         <div class="row">
             <!-- Solo obtiene los productos que tienen descuento -->
