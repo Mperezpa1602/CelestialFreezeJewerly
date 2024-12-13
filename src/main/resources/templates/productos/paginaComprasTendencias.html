@@ -12,8 +12,6 @@
     </head>
     <body>
 
-
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Celestial Freeze Jewerly</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,14 +43,14 @@
         <!-- Cabecera -->
         <div class="jumbotron text-center" style="background-color: #f8f9fa;">
             <h1 class="display-4">Celestial Freeze Jewerly</h1>
-            <p class="lead">Los productos mas llamativos del momento.</p>
+            <p class="lead">Los productos más llamativos del momento.</p>
         </div>
 
-        <!-- Bsuqueda de tendencias -->
+        <!-- Búsqueda de tendencias -->
         <div class="container mt-4">
             <form method="GET" action="/productos/buscarProductos">
                 <div class="input-group">
-                    <!-- Se le pone el nombre buscarTendencia ya que asi se le puso a la funcion -->	
+                    <!-- Se le pone el nombre buscarTendencia ya que así se le puso a la función -->  
                     <input type="text" class="form-control" name="buscarTendencia" placeholder="Buscar productos en tendencia" aria-label="Buscar productos" required />
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -63,27 +61,29 @@
 
         <!-- Productos -->
         <div class="row">
-            <!-- Solo obtiene los productos que tienen descuento -->
-            <div class="col-md-4" th:each="producto : ${productos}" th:if="${producto.tendencias == 'Si'}">
-                <div class="card mb-4" style="width: 100%; height: 100%;">
-                    <!-- Imagen del producto -->
-                    <img th:src="@{${producto.imagenProducto}}" class="card-img-top" alt="Product Image" style="object-fit: contain; width: 100%; height: 250px;">
+            <!-- Solo obtiene los productos que están en tendencia -->
+            <div class="col-md-4" th:each="producto : ${productos}" th:if="${producto.tendencias == 'SI'}">
+                <a th:href="@{/productos/detalle/{id}(id=${producto.idProducto})}" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-4" style="width: 100%; height: 100%;">
+                        <!-- Imagen del producto -->
+                        <img th:src="@{${producto.imagenProducto}}" class="card-img-top" alt="Product Image" style="object-fit: contain; width: 100%; height: 250px;">
 
-                    <div class="card-body text-center">
-                        <!-- Nombre del producto -->
-                        <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
+                        <div class="card-body text-center">
+                            <!-- Nombre del producto -->
+                            <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
 
-                        <!-- Precio del producto -->
-                        <p class="card-text" th:text="${producto.precioProducto}"></p>
+                            <!-- Precio del producto -->
+                            <p class="card-text" th:text="${producto.precioProducto}"></p>
 
-                        <!-- Aqui se agrega al carrito -->
-                        <a th:href="@{/productos/agregar/${producto.idProducto}}" class="btn btn-primary">Agregar al Carrito</a>
+                            <!-- Aquí se agrega al carrito -->
+                            <a th:href="@{/productos/agregar/${producto.idProducto}}" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
 
-        <!-- Pie de pagina -->
+        <!-- Pie de página -->
         <footer class="bg-light text-center py-4">
             <p>&copy; 2024 Celestial Freeze Jewerly.</p>
             <p>

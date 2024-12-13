@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.paginaCompras.service;
 
 import com.paginaCompras.domain.PaginaCompras;
@@ -37,4 +33,12 @@ public class PaginaComprasServiceImpl implements PaginaComprasService{
         return paginaComprasDao.findById(paginaCompras.getIdProducto()).orElse(null);
     }
     
+    
+    @Override 
+    //Se setea como read only, ya que es una consulta.
+    @Transactional(readOnly = true) 
+    //Proceso el cual carga el producto por id solicitado en la pagina.
+    public PaginaCompras getComprasById(Long id) { 
+        return paginaComprasDao.findById(id).orElse(null);
+    }
 }

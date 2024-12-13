@@ -1,13 +1,17 @@
 package com.paginaCompras.controller;
 
+import com.paginaCompras.domain.PaginaComentarios;
 import com.paginaCompras.domain.PaginaCompras;
+import com.paginaCompras.service.PaginaComentariosService;
 import com.paginaCompras.service.PaginaComprasService;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,7 +22,10 @@ public class PaginaComprasController {
 
     @Autowired
     private PaginaComprasService paginaComprasService;
-
+    
+    @Autowired
+    private PaginaComentariosService paginaComentariosService;
+            
     //Devuelve la lista complete, la cual sera filtrada para descuentos.
     @GetMapping(value = "/paginaComprasDescuento")
     public String listado(Model model) {
@@ -35,7 +42,7 @@ public class PaginaComprasController {
 
         // Filtra solo los productos que están en tendencia y sean a igual "Si"
         var productosEnTendencia = lista.stream()
-                .filter(producto -> "Si".equals(producto.getTendencias()))
+                .filter(producto -> "SI".equals(producto.getTendencias()))
                 .collect(Collectors.toList());
 
         model.addAttribute("productos", productosEnTendencia);
@@ -94,5 +101,15 @@ public class PaginaComprasController {
         model.addAttribute("productos", productosBuscados);
         return "/productos/paginaComprasCatalogo";
     }
+    
+    @GetMapping("/detalle/{id}") 
+    public String mostrarDetalleProducto(@PathVariable("id") Long id, Model model) { 
+        PaginaCompras producto = paginaComprasService.getComprasById(id);
+        List<PaginaComentarios> comentarios = paginaComentariosService.getComentarios(id); 
+        model.addAttribute("producto", producto); 
+        model.addAttribute("comentarios", comentarios); 
+        return "/productos/detalleProducto";
+    }
+    
 
 }

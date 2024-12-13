@@ -60,29 +60,26 @@
         </div>
 
 
-        <!-- Productos -->
-        <div class="row">
-            <!-- Solo obtiene los productos que tienen descuento -->
-            <div class="col-md-4" th:each="producto : ${productos}" th:if="${producto.precioDescuento > 0}">
-                <div class="card mb-4" style="width: 100%; height: 100%;">
-                    <!-- Imagen del producto -->
-                    <img th:src="@{${producto.imagenProducto}}" class="card-img-top" alt="Product Image" style="object-fit: contain; width: 100%; height: 250px;">
-
-                    <div class="card-body text-center">
-                        <!-- Nombre del producto -->
-                        <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
-
-                        <!-- Precio del producto -->
-                        <p class="card-text">
-                            <span class="text-muted" style="text-decoration: line-through;" th:text="${producto.precioProducto}"></span> 
-                            <strong class="text-success" th:text="${producto.precioDescuento}"></strong>
-                        </p>
-
-                        <!-- Aqui se agrega al carrito -->
-                        <a th:href="@{/productos/agregar/${producto.idProducto}}" class="btn btn-primary">Agregar al Carrito</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Productos --> 
+        <div class="row"> 
+            <!-- Carga los productos solo si tienen un descuento --> 
+            <div class="col-md-4" th:each="producto : ${productos}" th:if="${producto.precioDescuento > 0}"> 
+                <a th:href="@{/productos/detalle/{id}(id=${producto.idProducto})}" style="text-decoration: none; color: inherit;"> 
+                    <div class="card mb-4" style="width: 100%; height: 100%;"> 
+                        <img th:src="@{${producto.imagenProducto}}" class="card-img-top" alt="Product Image" style="object-fit: contain; width: 100%; height: 250px;"> 
+                        <div class="card-body text-center"> 
+                            <h5 class="card-title" th:text="${producto.nombreProducto}"></h5> 
+                            <!-- Tacha el precio original y pone el descuento --> 
+                            <p class="card-text"> 
+                                <span class="text-muted" style="text-decoration: line-through;" th:text="${producto.precioProducto}"></span> 
+                                <strong class="text-success" th:text="${producto.precioDescuento}"></strong> 
+                            </p> 
+                            <!-- Boton para agregar al carrito --> 
+                            <a th:href="@{/productos/agregar/{id}(id=${producto.idProducto})}" class="btn btn-primary">Agregar al Carrito</a> 
+                        </div> 
+                    </div> 
+                </a> 
+            </div> 
         </div>
 
         <!-- Pie de pagina -->

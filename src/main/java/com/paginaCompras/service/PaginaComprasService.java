@@ -11,4 +11,7 @@ public interface PaginaComprasService {
     //Select en base a un id
     public PaginaCompras getComprases(PaginaCompras paginaCompras);
     
+    //Selecciona en base de un iod especifico
+    public PaginaCompras getComprasById(Long id);
+    
 }
