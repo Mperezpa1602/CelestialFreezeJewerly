@@ -11,22 +11,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
         <style> 
-            .product-image { 
+            .prod-imagen { 
                 object-fit: cover; 
                 width: 100%; 
                 height: 100%; 
             } 
-            .product-details { 
+            .prod-detalles { 
                 padding: 15px; 
                 background: #f9f9f9; 
                 border-radius: 10px; 
             } 
-            .product-title { 
+            .prod-titulo { 
                 font-size: 2rem; 
                 font-weight: 
                     bold; 
             } 
-            .product-price { 
+            .prod-precio { 
                 font-size: 1.5rem; 
                 color: #E74C3C; 
             } 
@@ -39,13 +39,16 @@
                 background: #FFF; 
                 padding: 20px; 
             } 
-            .comments-section { 
+            .sec-comentarios { 
                 margin-top: 20px; 
             } 
             .carousel-inner { 
                 border-radius: 10px; 
                 background: #f9f9f9; 
                 padding: 20px; 
+            }
+            .separador 
+            { margin-bottom: 30px; 
             }
             </style>
     
@@ -90,23 +93,23 @@
         <div class="container mt-4"> 
             <div class="row"> 
                 <div class="col-md-6"> 
-                    <img th:src="@{${producto.imagenProducto}}" class="img-fluid product-image" alt="Product Image"> 
+                    <img th:src="@{${producto.imagenProducto}}" class="img-fluid prod-imagen" alt="Product Image"> 
                 </div> 
                 <div class="col-md-6"> 
-                    <div class="product-details"> 
-                        <h2 class="product-title" th:text="${producto.nombreProducto}"></h2> 
+                    <div class="prod-detalles"> 
+                        <h2 class="prod-titulo" th:text="${producto.nombreProducto}"></h2> 
                         <!-- Si el precio tiene descuento, muestra el precio tachado --> 
-                        <p class="product-price" th:if="${producto.precioDescuento != null}"> 
+                        <p class="prod-precio" th:if="${producto.precioDescuento != null}"> 
                             <span class="text-muted" style="text-decoration: line-through;" th:text="${producto.precioProducto}"></span> 
-                            <strong class="product-price-discounted">$<span th:text="${producto.precioDescuento}"></span>
+                            <strong class="prod-precio-discounted">$<span th:text="${producto.precioDescuento}"></span>
                         </p> 
                         <!-- Si no hay descuento, muestra solo el precio original --> 
-                        <p class="product-price" th:if="${producto.precioDescuento == null}"> 
+                        <p class="prod-precio" th:if="${producto.precioDescuento == null}"> 
                             <strong>$<span th:text="${producto.precioProducto}">
                         </p> 
                         <a th:href="@{/productos/agregar/{id}(id=${producto.idProducto})}" class="btn btn-primary btn-lg btn-block">Agregar al Carrito</a> 
                         <!-- Esto es para los comentarios --> 
-                        <div class="comments-section"> 
+                        <div class="sec-comentarios"> 
                             <h4>Comentarios</h4> 
                             <div id="carouselComentarios" class="carousel slide" data-ride="carousel"> 
                                 <div class="carousel-inner" role="listbox"> <div class="carousel-item active" th:if="${comentarios.size() > 0}"> 
@@ -130,8 +133,10 @@
                             </div> 
                         </div> 
                     </div> 
-                </div> 
+                </div>                 
             </div>
+            
+            <div class="separador"></div>
 
         <footer class="bg-light text-center py-4">
             <p>&copy; 2024 Celestial Freeze Jewerly.</p>
