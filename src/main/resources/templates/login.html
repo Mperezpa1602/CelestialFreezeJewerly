@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
                         <h3>Login</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/login" method="post">
+                        <form th:action="@{/login}" method="post">
                             <div class="form-group">
                                 <label for="username">Nombre de usuario</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required>
@@ -30,6 +31,11 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                         </form>
+                        <div th:if="${param.error}">
+                            <div class="alert alert-danger mt-3" role="alert">
+                                Nombre de usuario o contraseña incorrectos.
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-center">
                         <small>&copy; 2024 Celestial Freeze Jewelry</small>

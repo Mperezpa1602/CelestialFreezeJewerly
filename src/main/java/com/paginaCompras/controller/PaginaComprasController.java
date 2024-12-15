@@ -22,10 +22,10 @@ public class PaginaComprasController {
 
     @Autowired
     private PaginaComprasService paginaComprasService;
-    
+
     @Autowired
     private PaginaComentariosService paginaComentariosService;
-            
+
     //Devuelve la lista complete, la cual sera filtrada para descuentos.
     @GetMapping(value = "/paginaComprasDescuento")
     public String listado(Model model) {
@@ -101,15 +101,14 @@ public class PaginaComprasController {
         model.addAttribute("productos", productosBuscados);
         return "/productos/paginaComprasCatalogo";
     }
-    
-    @GetMapping("/detalle/{id}") 
-    public String mostrarDetalleProducto(@PathVariable("id") Long id, Model model) { 
+
+    @GetMapping("/detalle/{id}")
+    public String mostrarDetalleProducto(@PathVariable("id") Long id, Model model) {
         PaginaCompras producto = paginaComprasService.getComprasById(id);
-        List<PaginaComentarios> comentarios = paginaComentariosService.getComentarios(id); 
-        model.addAttribute("producto", producto); 
-        model.addAttribute("comentarios", comentarios); 
+        List<PaginaComentarios> comentarios = paginaComentariosService.getComentarios(id);
+        model.addAttribute("producto", producto);
+        model.addAttribute("comentarios", comentarios);
         return "/productos/detalleProducto";
     }
-    
 
 }

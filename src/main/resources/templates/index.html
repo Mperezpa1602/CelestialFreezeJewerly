@@ -1,65 +1,145 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Celestial Freeze Jewerly</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Inicio - Celestial Freeze Jewelry</title>
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link th:href="@{/css/styles.css}" rel="stylesheet">
-    </head>
-    <body>
-        <div class="content-wrapper">
-            <div class="upper-section">
-                <div class="image-title-container">
-                    <img th:src="@{/images/collares-hero.png}" alt="Celestial Freeze Jewelry Collares" class="main-image">
-                    <h1 class="main-title">Celestial Freeze Jewelry</h1>
-                </div>
-            </div>
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                        </head>
 
-                <div class="button-section">
-                    <div class="button-container">
-                        <a href="#" class="button-link">
-                            <div class="button-box">
-                                <span>BUSCAR</span>
-                            </div>
-                        </a>
-                        <a href="/productos/paginaComprasDescuento" class="button-link">
-                            <div class="button-box">
-                                <span >PROMOCIONES</span>
-                            </div>
-                        </a>
-                        <a href="/productos/paginaComprasTendencias" class="button-link">
-                            <div class="button-box">
-                                <span >TENDENCIAS</span>
-                            </div>
-                        </a>
-                        <a href="/productos/paginaComprasCatalogo" class="button-link">
-                            <div class="button-box">
-                                <span>TODOS LOS<br>PRODUCTOS</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-    <body>
+                        <style>
+                            .separador {
+                                margin-bottom: 30px;
+                            }
+                            .card-container {
+                                display: flex;
+                                justify-content: center;
+                            }
+                            .card {
+                                width: 100%;
+                                max-width: 300px;
+                                margin: 0 10px;
+                            }
+                            .card img {
+                                height: 200px;
+                                object-fit: cover;
+                            }
+                        </style> 
 
-        <footer class="bg-light text-center py-4">
-            <p>&copy; 2024 Celestial Freeze Jewerly.</p>
-            <p>
-                <a href="#" class="text-dark mr-3"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="text-dark mr-3"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="text-dark"><i class="fa fa-instagram"></i></a>
-            </p>
-        </footer>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    </body>
-</html>
+                        <body>
+
+                            <!-- Navbar de la pagina -->
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                <a class="navbar-brand" href="#">Celestial Freeze Jewelry</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">Inicio</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Productos
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="/productos/paginaComprasCatalogo">Catálogo</a>
+                                                <a class="dropdown-item" href="/productos/paginaComprasTendencias">Tendencias</a>
+                                                <a class="dropdown-item" href="/productos/paginaComprasDescuento">Descuentos</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Contacto</a>
+                                        </li>
+                                        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                                            <a class="nav-link" href="#">Agregar Producto</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+
+                            <!-- Cabecera -->
+                            <div class="jumbotron text-center" style="background-color: #f8f9fa;">
+                                <h1 class="display-4">Bienvenido a Celestial Freeze Jewelry</h1>
+                                <p class="lead">Descubre nuestras joyas únicas y exclusivas.</p>
+                            </div>
+
+                            <!-- Busca en todo el catálogo -->
+                            <div class="container mt-4">
+                                <form method="GET" action="/productos/buscarCatalogo">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="buscarProducto" placeholder="Buscar productos en el catálogo" aria-label="Buscar catálogo" required />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="separador"></div>
+
+                            <!-- Cards para los catalogos que se ofrecen -->
+                            <div class="container text-center">
+                                <h2>Explora Nuestros Catálogos</h2>
+                                <div class="card-container">
+                                    <!-- Catálogo Completo -->
+                                    <div class="card">
+                                        <img class="card-img-top" src="https://media.vogue.es/photos/5f22a76e4178b8bddcad5b2b/1:1/w_3283,h_3284,c_limit/sandralexandra_jewellery%2010.jpg" alt="Catálogo Completo">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Catálogo Completo</h4>
+                                                <p class="card-text">Explora toda nuestra colección de joyas exclusivas.</p>
+                                                <a href="/productos/paginaComprasCatalogo" class="btn btn-primary">Ver Catálogo</a>
+                                            </div>
+                                    </div>
+                                    <!-- Tendencias -->
+                                    <div class="card">
+                                        <img class="card-img-top" src="https://media.vogue.es/photos/5f22a76e4178b8bddcad5b2b/1:1/w_3283,h_3284,c_limit/sandralexandra_jewellery%2010.jpg" alt="Tendencias">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Tendencias</h4>
+                                                <p class="card-text">Descubre las últimas tendencias en joyería.</p>
+                                                <a href="/productos/paginaComprasTendencias" class="btn btn-info">Ver Tendencias</a>
+                                            </div>
+                                    </div>
+                                    <!-- Descuentos -->
+                                    <div class="card">
+                                        <img class="card-img-top" src="https://media.vogue.es/photos/5f22a76e4178b8bddcad5b2b/1:1/w_3283,h_3284,c_limit/sandralexandra_jewellery%2010.jpg" alt="Descuentos">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Descuentos</h4>
+                                                <p class="card-text">Aprovecha nuestras ofertas y descuentos exclusivos.</p>
+                                                <a href="/productos/paginaComprasDescuento" class="btn btn-success">Ver Descuentos</a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="separador"></div>
+
+                            <!-- Sobre nosotros -->
+                            <div class="container text-center">
+                                <h2>Sobre Nosotros</h2>
+                                <p>En Celestial Freeze Jewelry, ofrecemos una colección exclusiva de joyas diseñadas para realzar tu estilo y personalidad. Explora nuestro catálogo y encuentra la pieza perfecta que resuene con tu esencia.</p>
+                                <a href="/productos/paginaComprasCatalogo" class="btn btn-primary mt-3">Explorar Catálogo</a>
+                            </div>
+
+                            <div class="separador"></div>
+
+                            <!-- Footer -->
+                            <footer class="bg-light text-center py-4">
+                                <p>&copy; 2024 Celestial Freeze Jewelry.</p>
+                                <p>
+                                    <a href="#" class="text-dark mr-3"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="text-dark mr-3"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="text-dark"><i class="fa fa-instagram"></i></a>
+                                </p>
+                            </footer>
+
+                        </body>
+                        </html>
