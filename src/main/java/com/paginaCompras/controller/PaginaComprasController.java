@@ -12,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/productos")
@@ -28,7 +31,7 @@ public class PaginaComprasController {
 
     //Devuelve la lista complete, la cual sera filtrada para descuentos.
     @GetMapping(value = "/paginaComprasDescuento")
-    public String listado(Model model) {
+    public String mostrarDescuento(Model model) {
         var lista = paginaComprasService.getComprases();
         model.addAttribute("productos", lista);
         //model.addAttribute("totalProductos", lista.size());
@@ -111,4 +114,40 @@ public class PaginaComprasController {
         return "/productos/detalleProducto";
     }
 
+    //Muestra todos los productos
+    @GetMapping("/listado")
+    public String listado(Model model) {
+        var lista = paginaComprasService.getComprases();
+        model.addAttribute("productos", lista);
+        model.addAttribute("totalProductos", lista.size());
+        return "/productos/listado";
+    }
+
+    //Metodo para guardar/modificar productos
+    @GetMapping("/nuevo")
+    public String productoNuevo(PaginaCompras paginaCompras) {
+        return "/productos/modificaProducto";
+    }
+
+    @PostMapping("/guardar")
+    public String productoGuardar(PaginaCompras paginaCompras) {
+        //Ver si se mandan los datos
+        System.out.println("Guardando producto: " + paginaCompras);
+        paginaComprasService.save(paginaCompras);
+        return "redirect:/productos/listado";
+    }
+    
+   @GetMapping("/eliminar/{id}")
+public String eliminarProducto(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+    try {
+        PaginaCompras producto = new PaginaCompras();
+        producto.setIdProducto(id);
+        paginaComprasService.delete(producto);
+        redirectAttributes.addFlashAttribute("mensaje", "Producto eliminado exitosamente.");
+    } catch (Exception e) {
+        redirectAttributes.addFlashAttribute("error", "No se puede eliminar el producto porque tiene comentarios asociados.");
+    }
+    return "redirect:/productos/listado";
+}
+    
 }
